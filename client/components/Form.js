@@ -16,15 +16,16 @@ class Form extends Component {
   
   handleSubmit(e){
     e.preventDefault();
-    const target = 'https://url-shortener-babel.glitch.me/';
+    const target = 'https://url-shortener-babel.glitch.me/new/url';
+    console.log(url);
     let url = this.refs.data.value;
-    let data = {url: url};
+    let data = {oldurl: url};
     console.log(data);
     fetch(target, {
       method: 'POST', // or 'PUT'
       body: JSON.stringify(data), 
       headers: new Headers({
-        'Content-Type': 'application/text'
+        'Content-Type': 'application/json'
       })
     }).then(res => res.json())
     .catch(error => console.error('Error:', error))
@@ -38,10 +39,14 @@ class Form extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hello Form </h1>
+        <h2> Minify Url!</h2>
         <form onSubmit={this.handleSubmit}>
         Minify Url:<br/>
-        <input type = "text" ref ="data" placeholder = "ex: www.mywebsiteisthebest.com" onChange = {this.handleChange}/>
+        <input 
+          type = "text" 
+          ref ="data" 
+          placeholder = "ex: www.mywebsiteisthebest.com"           
+        />
         <button onClick={this.handleSubmit}>Send Data</button>
         </form>
       

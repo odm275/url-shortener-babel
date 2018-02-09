@@ -11317,11 +11317,6 @@ var App = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'App' },
-        _react2.default.createElement(
-          'h1',
-          null,
-          ' Hello App '
-        ),
         _react2.default.createElement(_Form2.default, null)
       );
     }
@@ -11391,15 +11386,16 @@ var Form = function (_Component) {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
       e.preventDefault();
-      var target = 'https://url-shortener-babel.glitch.me/';
+      var target = 'https://url-shortener-babel.glitch.me/new/url';
+      console.log(url);
       var url = this.refs.data.value;
-      var data = { url: url };
+      var data = { oldurl: url };
       console.log(data);
       fetch(target, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(data),
         headers: new Headers({
-          'Content-Type': 'application/text'
+          'Content-Type': 'application/json'
         })
       }).then(function (res) {
         return res.json();
@@ -11421,16 +11417,20 @@ var Form = function (_Component) {
         'div',
         { className: 'App' },
         _react2.default.createElement(
-          'h1',
+          'h2',
           null,
-          'Hello Form '
+          ' Minify Url!'
         ),
         _react2.default.createElement(
           'form',
           { onSubmit: this.handleSubmit },
           'Minify Url:',
           _react2.default.createElement('br', null),
-          _react2.default.createElement('input', { type: 'text', ref: 'data', placeholder: 'ex: www.mywebsiteisthebest.com', onChange: this.handleChange }),
+          _react2.default.createElement('input', {
+            type: 'text',
+            ref: 'data',
+            placeholder: 'ex: www.mywebsiteisthebest.com'
+          }),
           _react2.default.createElement(
             'button',
             { onClick: this.handleSubmit },
